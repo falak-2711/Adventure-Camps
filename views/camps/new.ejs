@@ -1,0 +1,31 @@
+<%layout('./layouts/boilerplate1')%>
+<!-- <div class="row"> -->
+<h1 class="text-center">New Camp</h1>
+<div class="col-4 offset-4">
+    <form action="/camps" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label" for="Name">Name</label>
+            <input class="form-control"type="text" id="Name" name="Camp[name]" required>
+       </div>
+       <div class="mb-3">
+            <label class="form-label" for="Price">Price</label>
+            <input class="form-control" type="Number" id="Price" name="Camp[price]" min="0">
+       </div>
+       <div class="mb-3">
+          <label class="form-label" for="location">Location</label>
+          <input class="form-control"type="text" id="location" name="Camp[location]" required>
+       </div>
+       <div class="mb-3">
+           <label class="form-label" for="Image">Upload Image(jpg, jpeg, png format only)</label>
+           <!-- <input class="form-control"type="text" id="image" name="Camp[image]" required> -->
+           <input type="file" name="image" multiple required >
+       </div>
+       <div class="mb-3">
+        <label class="form-label" for="description">Desciption</label>
+        <input class="form-control"type="text" id="description" name="Camp[description]">
+       </div>
+
+        <button class="btn btn-success offset-5" >Submit</button>
+    </form>
+</div>
+<!-- </div> -->

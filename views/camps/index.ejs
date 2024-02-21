@@ -1,0 +1,33 @@
+<% layout('./layouts/boilerplate1')%>
+  
+   <div class="container mt-3 mb-3">
+        <% for(let i=0;i<camps.length;i++) {%>
+            
+           <div class="card" mb-10>
+            <div class="row mb-1">
+                <div class="col-md-4">
+                    <img class="img-fluid" height="200" width="300" src="<%=camps[i].image[0].url%>" alt="loading..." >
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=camps[i].name%></h5>
+                        <p class="card-text">
+                            <small class="text-muted"><%=camps[i].location %></small>
+                        </p>
+                         <% if(camps[i].description.length>0) {%>
+                        <p class="card-text"><%= camps[i].description.slice(0,Math.min(camps[i].description.length,1000)) %>...</p>
+                        <% } %>
+
+                      <a class="btn btn-primary" href="/camps/<%=camps[i]._id %>"><%=camps[i].name%></a>
+
+                    </div>
+
+                </div>
+            </div>
+           </div>
+           
+        
+        
+        <%};%>
+ 
+</div>

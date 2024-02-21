@@ -1,0 +1,103 @@
+<% layout('./layouts/boilerplate1')%>
+<link rel="stylesheet" href="/styles/star.css">
+<div class="row">
+<div class="col-6 offset-1">
+  <div class="images">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <% for(let i=0;i<camp.image.length;i++) {%>
+        <div class="carousel-item <%=(i==0)? 'active': '' %>">
+          <img class="d-block w-100" src="<%=camp.image[i].url %>" alt="First slide">
+        </div>
+        <% } %>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%=camp.name %></h5>
+      <p class="card-text text-muted d-inline"><%=camp.location %></p>
+      <hr>  
+      <p class="card-text mt-2 ">Author:  <%=camp.author.username %></p>
+      <hr>
+      <p class="card-text"><%=camp.description %></p>
+
+    </div>
+    <div class="card-body">
+      <a class="btn btn-secondary red" href="https://www.google.co.in/search?q=<%=camp.name %>" class="card-link">Search On Google</a>
+
+      <% if(currentuser && camp.author._id.equals(currentuser._id)) {%>
+    <a class="btn btn-warning col-1 ml-1 d-inline"href="/camps/<%=camp._id%>/edit">Edit</a>
+    <form class="d-inline"action="/camps/<%=camp._id%>?_method=DELETE" method="post">
+      <button class="btn btn-danger">Delete</button>
+    </form>  
+    <% } %>
+ 
+
+  </div>
+  </div>
+
+
+</div>
+<div class=" mt-5 col-4 ">
+  <h3 class="mb-3">Reviews</h3>
+  <form action="/camps/<%=camp._id%>/reviews" method="post">
+    <div class="">
+
+      <fieldset class="starability-basic">
+        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+        <label for="first-rate1" title="Terrible">1 star</label>
+        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+        <label for="first-rate2" title="Not good">2 stars</label>
+        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+        <label for="first-rate3" title="Average">3 stars</label>
+        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+        <label for="first-rate4" title="Very good">4 stars</label>
+        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+        <label for="first-rate5" title="Amazing">5 stars</label>
+      </fieldset>
+
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="Review">Review</label>
+      <textarea rows="3" class="form-control" name="review[body]" id="" cols="30" rows="10"></textarea>
+
+    </div>
+    <button class="btn btn-success">Submit</button>
+
+  </form>
+  <br>
+  <h4>Reviews</h4>
+
+    <% for(let i=0;i<camp.reviews.length;i++){%>
+      <div class="card mb-3">
+        <div class="card-body">
+
+        <h5 class="card-title">Rating:</h5>
+
+        <p class="card-title starability-result" data-rating="<%=camp.reviews[i].rating %>"></p>
+        <p><%=camp.reviews[i].body %></p>
+
+        <% if(currentuser && camp.reviews[i].author._id.equals(currentuser._id)) {%>
+        <form action="/camps/<%=camp._id%>/review/<%=camp.reviews[i]._id%>?_method=DELETE" method="post">
+          <button class="btn btn-danger ml-3">Delete</button>
+         </form>
+         <% } %>
+
+         </div>
+         
+      </div>
+      <% } %>
+</div>
+</div>
+

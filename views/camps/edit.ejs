@@ -1,0 +1,32 @@
+<% layout('./layouts/boilerplate1')%>
+<h1 class="text-center">Edit Camp</h1>
+<div class="col-4 offset-4">
+    <form action='/camps/<%=camp._id  %>?_method=PUT' method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label" for="Name">Name</label>
+            <input class="form-control"type="text" id="Name" name="Camp[name]" value="<%=camp.name%>" required>
+       </div>
+       <div class="mb-3">
+            <label class="form-label" for="Price">Price</label>
+            <input class="form-control" type="Number" id="Price" name="Camp[price]" value="<%=camp.price%>">
+       </div>
+       <div class="mb-3">
+          <label class="form-label" for="location">Location</label>
+          <input class="form-control"type="text" id="location" name="Camp[location]" value="<%=camp.location%>" required>
+       </div>
+       <div class="mb-3">
+           <label class="form-label" for="image">Add Images</label>
+           <!-- <input class="form-control"type="text" id="image" name="Camp[image]" value="<%=camp.image%>"required> -->
+           <input type="file" name="image" multiple>
+       </div>
+       <div class="mb-3">
+        <label class="form-label" for="description">Desciption</label>
+        <input class="form-control"type="text" id="description" name="Camp[description]" value="<%=camp.description%>">
+       </div>
+
+        <button class="btn btn-success offset-5" >Submit</button>
+    </form>
+</div>
+    <footer>
+        <a href="/camps/<%=camp._id%>">Back</a>
+    </footer>
