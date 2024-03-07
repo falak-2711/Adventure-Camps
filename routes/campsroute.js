@@ -9,7 +9,7 @@ const ReviewModel=require('../models/reviews');
 const isloggedin=require('./middleware')
 
 const multer=require('multer');
-const {cloudinary,storage}=require('../cloudinary');
+const {cloudinary,storage}=require('../cloudinary/index');
 const upload= multer({storage});
 
 

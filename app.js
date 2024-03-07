@@ -38,14 +38,14 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,'public')));
 
+// Session database.
 const store=new mongostore({mongoUrl:"mongodb://127.0.0.1:27017/Camps",
-                            
                            });
 store.on('error',()=>{
     console.log('Session Database error!');
 })
 const sessionconfig={store,
-                      secret:'thisismysecret',
+                      secret:process.env.Session_secret,
                       resave:false,
                       saveUnintialized:true,
                       cookie:{
