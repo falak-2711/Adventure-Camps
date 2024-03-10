@@ -35,13 +35,14 @@ router.get('/new',isloggedin,(req,res)=>{
 
 
 router.post('/',isloggedin, upload.array('image'),async(req,res,next)=>
-{
+{   
     const camp=new Campsmodel(req.body.Camp);
     camp.author= await req.user._id;
       
     camp.image= await req.files.map(f=>({url:f.path,filename:f.filename}));
+    // camp.falak= await 'falak';
     await camp.save();
-    console.log(req.body, req.files);
+    console.log(camp);
     req.flash('success','Voilaa!! New Camp Added');
     res.redirect('/camps');
 });
