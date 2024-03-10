@@ -4,8 +4,9 @@ const isloggedin=function(req,res,next){
       req.session.prevurl=req.originalURL;
       req.flash('error','Login Required');
       res.redirect('/login');
+      return;
    }
-   next();
+   return next();
 };
 
 module.exports=isloggedin;
