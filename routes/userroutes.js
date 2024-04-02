@@ -6,7 +6,7 @@ const isloggedin=require('./middleware')
 
 
 router.get('/register',async(req,res)=>{
- res.render('user/useregisterform',{currentuser: req.user});
+ res.render('user/useregisterform');
 });
 
 

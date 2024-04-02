@@ -78,12 +78,12 @@ const sessionconfig={store,
 app.use('/camps',campsroute);
 
 app.get('/',(req,res)=>{
-    res.render('camps/home',{currentuser:req.user});
+    res.render('camps/home',{user:req.user});
 });
 
 
 app.use((err,req,res,next)=>{
-    res.render('error',{err,currentuser:req.user});
+    res.render('error',{err});
 });
 
 
