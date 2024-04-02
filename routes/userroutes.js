@@ -6,7 +6,7 @@ const isloggedin=require('./middleware')
 
 
 router.get('/register',async(req,res)=>{
- res.render('user/useregisterform');
+ res.render('user/useregisterform',{currentuser: req.user});
 });
 
 
@@ -31,7 +31,7 @@ router.post('/register', async(req,res)=>{
 
 
 router.get('/login',(req,res)=>{
-res.render('user/login');
+res.render('user/login',{currentuser: req.user});
 });
 
 router.post('/login',passport.authenticate('local',{ failureMessage: 'Please Check your Username or Password', failureFlash: true,failureRedirect:'/login'}),(req,res)=>{

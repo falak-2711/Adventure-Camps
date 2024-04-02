@@ -18,7 +18,7 @@ router.get('/',async (req,res,next)=>{
     try{
     const camps=await Campsmodel.find({});
     // console.log(camps);
-    res.render('camps/index',{camps});
+    res.render('camps/index',{camps,currentuser: req.user});
     }catch(e){
         return next(e);
     }
@@ -28,7 +28,7 @@ router.get('/',async (req,res,next)=>{
 
 router.get('/new',isloggedin,(req,res)=>{
 
-    res.render('camps/new');
+    res.render('camps/new',{currentuser: req.user});
 
 });
 
@@ -112,7 +112,7 @@ router.get('/:id/edit',isloggedin,async (req,res,next)=>{
     const {id}=req.params;
     const camp=await Campsmodel.findOne({_id:id});
     if(camp.author._id.equals(req.user._id))
-    res.render('camps/edit',{camp});
+    res.render('camps/edit',{camp,currentuser: req.user});
     else
     {
         req.flash('error', "You are Not author of This:");
